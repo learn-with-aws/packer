@@ -28,12 +28,7 @@
     "provisioners": [
       {
         "type": "shell",
-        "inline": [
-          "sudo yum install git -y",
-          "cd /opt && sudo git clone https://github.com/learn-with-aws/terraform.git",
-          "cd /opt/terraform/nginx && sudo chmod +x main_script.sh",
-          "sudo sh main_script.sh"
-        ]
+        "script": "main_script.sh"
       },
       {
         "type": "shell",

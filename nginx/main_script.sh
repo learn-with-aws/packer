@@ -1,18 +1,22 @@
 #!/bin/bash
 
-cd /opt/terraform/nginx/scripts
+sudo yum install git -y
+
+sudo git clone https://github.com/learn-with-aws/packer.git /opt/packer
+
+cd /opt/packer/nginx
 
 # Provide execute permission for scripts
-sudo chmod -R 755 /opt/terraform/nginx/scripts
+sudo chmod -R 755 /opt/packer/nginx/scripts
 
 # Install pre requisites
-sudo sh /opt/terraform/nginx/scripts/pre-requirements.sh
+sudo sh /opt/packer/nginx/scripts/pre-requirements.sh
 
 # Install Nginx
-sudo sh /opt/terraform/nginx/scripts/nginx_install.sh
+sudo sh /opt/packer/nginx/scripts/nginx_install.sh
 
 # Copy the backUp script to Nginx default Path
-sudo cp -pr /opt/terraform/nginx/scripts/nginx_logs_backup.sh /etc/nginx/nginx_logs_backup.sh
+sudo cp -pr /opt/packer/nginx/scripts/nginx_logs_backup.sh /etc/nginx/nginx_logs_backup.sh
 
 # SetUp the CronJob for regular backup
 sudo echo "30 3 * * 0 sh /etc/nginx/nginx_logs_backup.sh" >> /var/spool/cron/root
