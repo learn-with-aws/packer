@@ -13,3 +13,8 @@
 
         3. Configure the variable. (export AWS_CONFIG_FILE=~/opt/softwares/packer/.packer_cred/credentials)
         4. Run aws configure and add your values.
+
+        Note : For additional Profile
+                [profile <profile Name>]
+                aws_access_key_id=foo
+                aws_secret_access_key=bar
