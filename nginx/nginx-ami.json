@@ -1,0 +1,43 @@
+  {
+      "variables": {
+            "ami": "ami-09e5afc68eed60ef4",
+            "aws_region": "eu-west-2",
+            "vpc": "vpc-035bfac28c2eae6cf",
+            "subnet": "subnet-043da21c9eebfdd75",
+            "security_group": "sg-098031eca10664474"
+      },
+      "builders": [{
+            "type": "amazon-ebs",
+            "region": "{{ user `aws_region` }}",
+            "source_ami": "{{ user `ami` }}",
+            "instance_type": "t2.micro",
+            "ssh_username": "centos",
+            "ami_name": "nginx-base-{{timestamp}}",
+            "ssh_keypair_name": "anand-london",
+            "ssh_private_key_file": "anand-london.pem",
+            "tags": {
+              "Name":  "Nginx-Base-AMI",
+              "Env": "Development"
+            },
+            "associate_public_ip_address": "true",
+            "vpc_id": "{{user `vpc`}}",
+            "subnet_id": "{{user `subnet`}}",
+            "security_group_id": "{{user `security_group`}}"
+      }
+    ],
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": [
+          "sudo yum install git -y",
+          "cd /opt && sudo git clone https://github.com/learn-with-aws/terraform.git",
+          "cd /opt/terraform/nginx && sudo chmod +x main_script.sh",
+          "sudo sh main_script.sh"
+        ]
+      },
+      {
+        "type": "shell",
+        "inline": ["sleep 300"]
+      }
+    ]
+  }
