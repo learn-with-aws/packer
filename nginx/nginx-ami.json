@@ -32,7 +32,7 @@
       },
       {
         "type": "shell",
-        "inline": ["sleep 300"]
+        "inline": ["sleep 20"]
       }
     ]
   }
