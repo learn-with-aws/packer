@@ -25,7 +25,7 @@
       "Name": "CentOs_Base_for_Terraform"
     }
   }],
-  "provisoners": [{
+  "provisioners": [{
     "type": "shell",
     "script": "pre_requirements.sh"
 
