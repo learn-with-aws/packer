@@ -1,0 +1,32 @@
+{
+    "variables": {
+      "aws_region": "us-east-1",
+      "ami": "ami-09d19e919d57453f8",
+      "instance_size": "m5a.2xlarge",
+      "username": "ec2-user",
+      "vpc": "vpc-0aa305838680cdb1e",
+      "subnet": "subnet-08e83b6f889d95d28",
+      "security_group": "sg-01ac334b2506b3939"
+    },
+    "builders": [{
+      "type": "amazon-ebs",
+      "region": "{{ user `aws_region`}}",
+      "source_ami": "{{user `ami`}}",
+      "instance_type": "{{user `instance_size`}}",
+      "ssh_username": "{{user `username`}}",
+      "ssh_keypair_name": "my-aws-account",
+      "ssh_private_key_file": "/home/ec2-user/private.pem",
+      "associate_public_ip_address": "true",
+      "vpc_id": "{{user `vpc`}}",
+      "subnet_id": "{{user `subnet`}}",
+      "security_group_id": "{{user `security_group`}}",
+      "ami_name": "K8s-DockerImage-{{timestamp}}",
+      "tags": {
+        "Name": "K8s-DockerImage"
+      }
+    }],
+    "provisioners": [{
+      "type": "shell",
+      "script": "pre-requirements.sh"
+    }]
+  }
