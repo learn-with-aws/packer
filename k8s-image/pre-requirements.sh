@@ -5,7 +5,8 @@ sudo yum install -y wget \
      unzip \
      tree \
      git \
-     docker 
+     docker \
+     lsof
 
 sudo cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
@@ -36,5 +37,5 @@ sudo setenforce 0
 
 sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
-sudo systemctl enable docker && sudo systemctl start docker
-sudo systemctl enable kubelet && sudo systemctl start kubelet
+# sudo systemctl enable docker && sudo systemctl start docker
+# sudo systemctl enable kubelet && sudo systemctl start kubelet

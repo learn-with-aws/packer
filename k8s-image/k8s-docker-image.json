@@ -1,7 +1,7 @@
 {
     "variables": {
       "aws_region": "us-east-1",
-      "ami": "ami-09d19e919d57453f8",
+      "ami": "ami-096fda3c22c1c990a",
       "instance_size": "m5a.2xlarge",
       "username": "ec2-user",
       "vpc": "vpc-0aa305838680cdb1e",
